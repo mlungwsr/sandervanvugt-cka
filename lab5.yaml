@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: nginxevery-node
+  labels:
+    k8s-app: nginx-every
+spec:
+  selector:
+    matchLabels:
+      name: nginxevery-node
+  template:
+    metadata:
+      labels:
+        name: nginxevery-node
+    spec:
+      containers:
+      - name: nginxevery-node
+        image: nginx

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: httpdd
+  name: httpdd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpdd
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: httpdd
+    spec:
+      containers:
+      - image: httpd
+        name: httpd
+        ports:
+          - containerPort: 80
+            name: "htt-server"
+        volumeMounts:
+          - mountPath: "/var/www"
+            name: local-pv-storage
+      volumes:
+        - name: local-pv-storage
+          persistentVolumeClaim:
+            claimName: myclaim
